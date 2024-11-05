@@ -40,7 +40,7 @@ class Triangle {
         this.velocity = -6;
 
         this.img = new Image();
-        this.img.src = "/assets/images/triangle-01.png"
+        this.img.src = "assets/images/triangle-01.png"
 
     }
 
@@ -80,7 +80,7 @@ class TriangleTwo extends Triangle {
         this.h = 40;
 
         this.img = new Image();
-        this.img.src = "/assets/images/triangle-02.png"
+        this.img.src = "assets/images/triangle-02.png"
     }
 
 }

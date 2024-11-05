@@ -8,7 +8,7 @@ class Background {
         this.h = this.ctx.canvas.height;
 
         this.img = new Image();
-        this.img.src = "/assets/images/pink-grid-neon-background.jpg";
+        this.img.src = "assets/images/pink-grid-neon-background.jpg";
     }
 
     draw () {

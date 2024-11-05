@@ -21,7 +21,7 @@ class Player {
         this.jumpStrength = 13; 
 
         this.img = new Image();
-        this.img.src = "/assets/images/face-hehe.jpeg"
+        this.img.src = "assets/images/face-hehe.jpeg"
 
     }
 
