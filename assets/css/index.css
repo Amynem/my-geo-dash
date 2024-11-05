@@ -4,7 +4,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(assets/images/background-image.jpeg);
+    background-image: url(/background-image.jpeg);
     background-position: center;
     font-family: "Poppins";
 }
@@ -50,7 +50,7 @@ canvas {
 #start-button {
     font-size: 24px;
     padding: 40px 80px;
-    background-image: url(assets/images/start.png);
+    background-image: url(/assets/images/start.png);
     background-size: cover;   
     background-position: center;
     border: none;
