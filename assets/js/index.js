@@ -4,7 +4,10 @@ const ctx = canvas.getContext("2d");
 
 const game = new Game(ctx);
 
-game.start();
+document.getElementById('start-button').onclick = function() {
+  document.getElementById('start-screen').style.display = 'none';
+  game.start(); 
+};
 
 document.addEventListener("keydown", (event) => {
     game.onKeyDown(event.keyCode);

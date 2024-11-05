@@ -41,25 +41,46 @@ class Game {
             new Triangle(ctx, 4460, 470),
             new floatingFloor(ctx, 4650, 510),
             new Triangle(ctx, 4810, 470),
+            new smallFloatingFloor(ctx, 5000, 470),
+            new Triangle(ctx, 4990, 510),
+            new Triangle(ctx, 5030, 510),
+            new Triangle(ctx, 5070, 510),
+            new smallFloatingFloor(ctx, 5300, 470),
+            new Triangle(ctx, 5290, 510),
+            new Triangle(ctx, 5330, 510),
+            new Triangle(ctx, 5370, 510),
         ];
+
+        this.obstacles.forEach(obstacle => {
+            obstacle.originalX = obstacle.x;
+            obstacle.originalY = obstacle.y;
+        });
+        this.obstaclesReset = [...this.obstacles];
 
         this.interval = null;
         this.started = false;
-        
-        
+        this.timeSurvived = 0;
+        this.bestScore = localStorage.getItem("bestScore") || 0;
+
+        this.audio = new Audio("/assets/audio/clown.mp3");
+        this.audio.volume = 0.05;
 
     }
 
+
     start() {
+        this.audio.play();
         if (!this.started) {
 
             this.started = true;
+            this.timeSurvived = 0;
     
             this.interval = setInterval(() => {
                 this.clear();
                 this.move();
                 this.checkCollisions();
                 this.draw();
+                this.timeSurvived++;
             
             }, 1000 / 60);
         }
@@ -75,11 +96,15 @@ class Game {
         this.player.draw();
         this.floor.draw();
         this.obstacles.forEach((obstacle) => obstacle.draw());
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "20px Poppins";
+        this.ctx.fillText(`Score: ${this.timeSurvived} `, 20, 30);
+        this.ctx.fillText(`Best Score: ${this.bestScore}`, 20, 60);
     } 
 
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-        this.obstacles = this.obstacles.filter((obstacle) => obstacle.isVisible());
+        // this.obstacles = this.obstacles.filter((obstacle) => obstacle.isVisible());
     }
 
     
@@ -88,6 +113,7 @@ class Game {
     }
 
     pause() {
+        this.audio.pause();
         this.started = false;
         clearInterval(this.interval);
     }
@@ -117,5 +143,46 @@ class Game {
 
     gameOver() {
         this.pause();
+
+        document.getElementById("survival-time").innerText = this.timeSurvived;
+        document.getElementById("game-over-popup").style.display = "flex";
+
+
+        /*if (this.timeSurvived > this.bestScore) {
+            this.bestScore = this.timeSurvived;
+            localStorage.setItem("bestScore", this.bestScore); // Update best score in localStorage
+            console.log(`New High Score! You survived for ${this.timeSurvived} seconds.`);
+        } else {
+            console.log(`Game Over! You survived for ${this.timeSurvived} seconds.`);
+        }*/
+    }
+
+    submitScore() {
+        const playerName = document.getElementById("player-name").value;
+        const timeSurvived = game.timeSurvived;
+    
+        if (timeSurvived > game.bestScore) {
+            game.bestScore = timeSurvived;
+            localStorage.setItem("bestScore", timeSurvived); 
+            localStorage.setItem("bestPlayer", playerName);  
+        }
+    
+        document.getElementById("game-over-popup").style.display = "none";
+        this.resetGame();
+    }
+
+    resetGame() {
+        this.clear();
+        
+        this.player.resetPosition();
+        
+        this.timeSurvived = 0;
+        this.obstacles.forEach(obstacle => {
+            obstacle.reset(); // Call reset on each obstacle
+        });
+        
+        this.started = false;
+        document.getElementById("game-over-popup").style.display = "none";
+        this.start();
     }
 }

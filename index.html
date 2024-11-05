@@ -7,7 +7,21 @@
     <link rel="stylesheet" href="/assets/css/index.css" />
   </head>
   <body>
+    <img id="title" src="/assets/images/title.png"></img>
     <canvas id="canvas" width="1200" height="700"></canvas>
+    <div id="start-screen">
+      <button id="start-button"></button>
+  </div>
+    <div id="game-over-popup" style="display: none;">
+      <div id="popup-content">
+          <h2>Better luck next time!</h2>
+          <p>You survived for <span id="survival-time"></span> seconds.</p>
+          <label for="player-name">Name:</label>
+          <input type="text" id="player-name" placeholder="Type something cool" />
+          <button onclick="game.submitScore()">Submit</button>
+      </div>
+  </div>
+
     <script src="/assets/js/constant.js"></script>
     <script src="/assets/js/background.js"></script>
     <script src="/assets/js/floor.js"></script>

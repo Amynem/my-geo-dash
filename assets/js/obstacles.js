@@ -18,6 +18,12 @@ class Square {
         this.x += this.velocity;
     }
 
+    reset() {
+        this.x = this.originalX; 
+        this.y = this.originalY;
+        this.visible = true; 
+    } 
+
     isVisible() {
         return this.x + this.w > 0;
     }
@@ -53,6 +59,12 @@ class Triangle {
 
     move() {
         this.x += this.velocity;
+    }
+
+    reset() {
+        this.x = this.originalX; 
+        this.y = this.originalY; 
+        this.visible = true; 
     }
 
     isVisible() {
@@ -92,6 +104,12 @@ class Rectangle {
         this.x += this.velocity;
     }
 
+    reset() {
+        this.x = this.originalX; 
+        this.y = this.originalY; 
+        this.visible = true; 
+    }
+
     isVisible() {
         return this.x + this.w > 0;
     }
@@ -116,6 +134,11 @@ class floatingFloor {
     move() {
         this.x += this.velocity;
     }
+
+    reset() {
+        this.x = this.originalX; 
+        this.y = this.originalY; 
+        this.visible = true; 
 
     isVisible() {
         return this.x + this.w > 0;
@@ -143,8 +166,17 @@ class smallFloatingFloor {
         this.x += this.velocity;
     }
 
+    reset() {
+        this.x = this.originalX; 
+        this.y = this.originalY; 
+        this.visible = true; 
+    }
+
     isVisible() {
         return this.x + this.w > 0;
     }
 
+
+
 }
+

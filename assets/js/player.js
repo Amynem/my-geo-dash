@@ -8,6 +8,8 @@ class Player {
         this.x = x;
         this.y = y;
         this.floor = floor;
+        this.startingX = x;
+        this.startingY = y;
 
         this.vy = 1;
         this.vx = 0;
@@ -94,6 +96,12 @@ class Player {
         return this.collidesWith(element) && 
           element.x + element.w > this.x &&
           element.x <= this.x;
+    }
+    resetPosition() {
+        this.x = this.startingX;
+        this.y = this.startingY;
+        this.vy = 0;
+        this.isJumping = false;
     }
 
 }
