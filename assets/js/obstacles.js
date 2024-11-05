@@ -139,6 +139,7 @@ class floatingFloor {
         this.x = this.originalX; 
         this.y = this.originalY; 
         this.visible = true; 
+    }
 
     isVisible() {
         return this.x + this.w > 0;
