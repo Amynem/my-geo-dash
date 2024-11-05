@@ -62,7 +62,7 @@ class Game {
         this.timeSurvived = 0;
         this.bestScore = localStorage.getItem("bestScore") || 0;
 
-        this.audio = new Audio("assets/audio/clown.mp3");
+        this.audio = new Audio("assets/audio/Clown.mp3");
         this.audio.volume = 0.05;
 
     }
